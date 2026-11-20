@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"><meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Library Management System</title><link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="auth-shell" id="authShell">
+    <section class="brand-panel">
+      <div class="brand-mark">L</div><p class="eyebrow">YOUR DIGITAL READING SPACE</p>
+      <h1>Discover your<br><span>next chapter.</span></h1>
+      <p class="brand-copy">Explore books, borrow your favourites and keep your reading journey organised.</p>
+      <div class="cover-stack">
+        <img src="images/alchemist.svg" alt="The Alchemist book cover">
+        <img src="images/wings.svg" alt="Wings of Fire book cover">
+        <img src="images/atomic.svg" alt="Atomic Habits book cover">
+      </div>
+    </section>
+    <section class="auth-panel">
+      <div class="auth-card">
+        <div class="mobile-brand">LIBRARY<span>+</span></div>
+        <div id="registerView">
+          <p class="eyebrow">JOIN OUR LIBRARY</p><h2>Create your account</h2>
+          <p class="muted">Register first, then use your details to log in.</p>
+          <form id="registerForm">
+            <label>Full name</label><input id="regName" required maxlength="60" placeholder="Enter your full name">
+            <label>Username</label><input id="regUsername" required minlength="4" maxlength="20" pattern="[A-Za-z0-9_]+" placeholder="Choose a username">
+            <small>Use 4–20 letters, numbers, or underscores.</small>
+            <label>Password</label><input id="regPassword" type="password" required minlength="6" placeholder="At least 6 characters">
+            <label>Confirm password</label><input id="regConfirm" type="password" required minlength="6" placeholder="Re-enter your password">
+            <button class="primary full" type="submit">Create account</button>
+          </form>
+          <p class="switch-line">Already registered? <button class="text-button" id="showLogin">Go to login</button></p>
+        </div>
+        <div id="loginView" class="hidden">
+          <p class="eyebrow">WELCOME BACK</p><h2>Sign in to your account</h2>
+          <p class="muted">Only registered users can log in.</p>
+          <form id="loginForm">
+            <label>Username</label><input id="loginUsername" autocomplete="username" required placeholder="Enter your registered username">
+            <label>Password</label><input id="loginPassword" type="password" autocomplete="current-password" required placeholder="Enter your password">
+            <button class="primary full" type="submit">Login</button>
+          </form>
+          <p class="switch-line">Not registered? <button class="text-button" id="showRegister">Create an account</button></p>
+        </div>
+        <p id="authMessage" class="message" role="status"></p>
+      </div>
+    </section>
+  </div>
+
+  <main id="appShell" class="hidden">
+    <header class="topbar"><a class="logo" href="#">LIBRARY<span>+</span></a>
+      <nav><button class="nav-btn active" data-page="dashboard">Dashboard</button><button class="nav-btn" data-page="catalogue">Book catalogue</button><button class="nav-btn" data-page="history">My loans</button><button class="nav-btn staff-only hidden" data-page="manage">Manage books</button></nav>
+      <div class="user-area"><span id="userGreeting"></span><button id="logoutBtn" class="outline small">Logout</button></div>
+    </header>
+    <div class="content">
+      <section id="dashboardPage" class="page">
+        <p class="eyebrow">LIBRARY OVERVIEW</p><h1>Good reading starts here.</h1><p class="muted">Welcome, <strong id="dashName"></strong>. Find something wonderful to read today.</p>
+        <div class="stats"><article><span>Books in catalogue</span><strong id="bookCount">0</strong></article><article><span>Available books</span><strong id="availableCount">0</strong></article><article><span>Your borrowed books</span><strong id="loanCount">0</strong></article></div>
+        <div class="section-heading"><div><p class="eyebrow">HANDPICKED FOR YOU</p><h2>Featured books</h2></div><button class="text-button" data-goto="catalogue">View catalogue →</button></div>
+        <div id="featuredBooks" class="book-grid"></div>
+      </section>
+      <section id="cataloguePage" class="page hidden">
+        <p class="eyebrow">EXPLORE THE COLLECTION</p><h1>Book catalogue</h1><p class="muted">Search the collection and borrow an available book.</p>
+        <input id="searchBox" class="search" placeholder="Search by title, author or category..."><div id="bookGrid" class="book-grid"></div>
+      </section>
+      <section id="historyPage" class="page hidden">
+        <p class="eyebrow">YOUR READING ACTIVITY</p><h1>My loans</h1><div class="table-wrap"><table><thead><tr><th>Book</th><th>Status</th><th>Action</th></tr></thead><tbody id="loanRows"></tbody></table></div>
+      </section>
+      <section id="managePage" class="page hidden">
+        <p class="eyebrow">LIBRARIAN WORKSPACE</p><h1>Manage books</h1>
+        <form id="addBookForm" class="add-form"><input id="bookTitle" required placeholder="Book title"><input id="bookAuthor" required placeholder="Author"><input id="bookCategory" required placeholder="Category"><button class="primary" type="submit">Add book</button></form>
+        <div id="manageGrid" class="book-grid"></div>
+      </section>
+    </div>
+  </main>
+  <script src="app.js"></script>
+</body></html>
